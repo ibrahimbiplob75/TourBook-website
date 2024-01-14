@@ -1,5 +1,6 @@
 import React from 'react';
 import DiscussionCard from './DiscussionCard';
+import { Link } from 'react-router-dom';
 
 const Discussion = () => {
     return (
@@ -26,10 +27,15 @@ const Discussion = () => {
                 <li>
                   <a>Top Liked</a>
                 </li>
+                <li>
+                  <a>Tags</a>
+                </li>
               </ul>
             </div>
             <div className="mt-1">
-              <button className="btn btn-info">Start a Discussion</button>
+              <Link to="discussion/form">
+                <button className="btn btn-info">Start a Discussion</button>
+              </Link>
             </div>
           </div>
         </div>

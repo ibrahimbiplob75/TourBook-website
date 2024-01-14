@@ -22,7 +22,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-     
+      {
+        path:"discussion/form",
+        element:<DiscussionForm></DiscussionForm>
+      },
       
       
       {
@@ -85,20 +88,21 @@ import AdminRoute from './PrivateRoute/AdminRoute.jsx';
 import AddItem from './Components/Dashboard/AddItem/AddItem.jsx';
 import Payment from './Components/Dashboard/Payment/Payment.jsx';
 import { HelmetProvider } from 'react-helmet-async';
+import DiscussionForm from './Components/Home/DiscussionForm.jsx';
 
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ContextProvider>
-        <HelmetProvider>
+    <ContextProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
           <div className="max-w mx-2">
             <RouterProvider router={router} />
           </div>
-        </HelmetProvider>
-      </ContextProvider>
-    </QueryClientProvider>
+        </QueryClientProvider>
+      </HelmetProvider>
+    </ContextProvider>
   </React.StrictMode>
 );
