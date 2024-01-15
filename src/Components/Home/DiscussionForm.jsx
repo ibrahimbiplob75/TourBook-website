@@ -152,6 +152,7 @@ const DiscussionForm = () => {
             subTag:data.subTag,
             descriptions:data.descriptions,
             image: res?.data.data.display_url,
+            date:new Date()
           };
 
           console.log(formData)

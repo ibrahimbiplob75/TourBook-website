@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DiscussionCard from './DiscussionCard';
 import { Link } from 'react-router-dom';
+import AxiosPublic from '../../AxiosPublic/AxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const Discussion = () => {
+  const [publicAxios] = AxiosPublic();
+    const {
+      data: discussion = [],
+      isLoading,
+      refetch,
+    } = useQuery({
+      queryKey: ["discussion"],
+      queryFn: async () => {
+        const res = await publicAxios.get("/discussion");
+        return res.data;
+      },
+    });
+    // console.log(discussion)
     return (
       <div>
         {/* header */}
@@ -42,10 +57,9 @@ const Discussion = () => {
 
         {/* body */}
         <div>
-          <DiscussionCard></DiscussionCard>
-          <DiscussionCard></DiscussionCard>
-          <DiscussionCard></DiscussionCard>
-          <DiscussionCard></DiscussionCard>
+          {discussion.map((data) => (
+            <DiscussionCard key={data._id} discuss={data}></DiscussionCard>
+          ))}
         </div>
       </div>
     );
