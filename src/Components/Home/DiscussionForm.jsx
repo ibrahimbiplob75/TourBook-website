@@ -174,7 +174,7 @@ const DiscussionForm = () => {
       };
     return (
       <div>
-        <div className="h-44"></div>
+        
         <div className="m-12 text-center">
           <h2 className="text-5xl font-light mb-2">New Discussion</h2>
           <h1 className="mb-8 text-red-600">
@@ -249,7 +249,7 @@ const DiscussionForm = () => {
               <input
                 className="btn btn-info text-white"
                 type="submit"
-                value="Add Item"
+                value="Upload post"
               />
             </div>
           </form>

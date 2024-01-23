@@ -17,7 +17,7 @@ const Discussion = () => {
         return res.data;
       },
     });
-    // console.log(discussion)
+    
     return (
       <div>
         {/* header */}

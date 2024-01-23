@@ -1,10 +1,11 @@
 import React from 'react';
-import { FaBookmark, FaCalendar, FaHome, FaReact,FaAccusoft, FaShoppingCart, FaTicketAlt, FaUtensils, FaWallet, FaBook, FaUsers, FaListAlt } from 'react-icons/fa';
+import { FaBookmark, FaHome, FaAccusoft, FaWpforms, FaUtensils, FaWallet, FaBook, FaUsers, FaListAlt, FaUser, FaBell, FaDiscourse } from 'react-icons/fa';
 import { NavLink, Outlet } from 'react-router-dom';
 import CheckAdmin from '../../CheckAdmin/CheckAdmin';
 
 const Dashboard = () => {
     const [isAdmin]=CheckAdmin();
+    
     return (
       <div className="flex">
         {/* sidebar */}
@@ -18,28 +19,23 @@ const Dashboard = () => {
               </li>
 
               <li className="mt-4 text-white bg-green-800 rounded-xl">
-                <NavLink to="/dashboard/reservation">
-                  <FaCalendar></FaCalendar>Reservation
+                <NavLink to="/dashboard/profile">
+                  <FaUser></FaUser>My Profile
                 </NavLink>
               </li>
 
               <li className="mt-4 text-white bg-green-800 rounded-xl">
                 <NavLink to="/dashboard/cart">
-                  <FaShoppingCart></FaShoppingCart>My Cart
+                  <FaWpforms></FaWpforms>My Post
                 </NavLink>
               </li>
 
               <li className="mt-4 text-white bg-green-800 rounded-xl">
-                <NavLink to="/dashboard/OrderHistory">
-                  <FaListAlt></FaListAlt> Order History
+                <NavLink to="/discussion/form">
+                  <FaListAlt></FaListAlt> Add post
                 </NavLink>
               </li>
 
-              <li className="mt-4 text-white bg-green-800 rounded-xl">
-                <NavLink to="/dashboard/reservation">
-                  <FaReact></FaReact>Review
-                </NavLink>
-              </li>
               <li className="mt-4 text-white bg-green-800 rounded-xl">
                 <NavLink to="/dashboard/reservation">
                   <FaBookmark></FaBookmark>Bookmark
@@ -51,12 +47,12 @@ const Dashboard = () => {
                 <li className="mt-4 text-white bg-green-800 rounded-xl">
                   <NavLink to="/dashboard/addItem">
                     {" "}
-                    <FaUtensils></FaUtensils> Add an Item
+                    <FaBell></FaBell>Announcement Post
                   </NavLink>
                 </li>
                 <li className="mt-4 text-white bg-green-800 rounded-xl">
                   <NavLink to="/dashboard/manageitems">
-                    <FaWallet></FaWallet> Manage Items
+                    <FaDiscourse></FaDiscourse> Manage Discussion
                   </NavLink>
                 </li>
                 <li className="mt-4 text-white bg-green-800 rounded-xl">
@@ -81,16 +77,10 @@ const Dashboard = () => {
                 <FaAccusoft></FaAccusoft>Website
               </NavLink>
             </li>
-
-            <li className="mt-4 text-white bg-green-800 rounded-xl">
-              <NavLink to="/menu">
-                <FaTicketAlt></FaTicketAlt>Menu
-              </NavLink>
-            </li>
           </ul>
         </div>
         {/* constent area */}
-        <div className="flex-1 m-20">
+        <div className="flex-1 m-4">
           <Outlet></Outlet>
         </div>
       </div>

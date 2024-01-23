@@ -42,8 +42,8 @@ const Home = () => {
                 />
               </div>
             </div>
-            <select className="select select-bordered join-item">
-              <option disabled selected>
+            <select  className="select select-bordered join-item">
+              <option disabled defaultValue={"Filter"}>
                 Filter
               </option>
               <option>Sci-fi</option>

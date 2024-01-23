@@ -1,10 +1,10 @@
 import { FaCommentAlt, FaRegThumbsDown, FaRegThumbsUp, FaShareAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const formateDate=(date)=>{
     const currentDate=new Date();
     const postDate=new Date(date);
     const timeDef=currentDate - postDate;
 
-    console.log(timeDef)
     const seconds = Math.floor(timeDef / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
@@ -34,44 +34,49 @@ const DiscussionCard = ({ discuss }) => {
   
   return (
     <div>
-      <div className="grid grid-cols-3 gap-4 items-center mt-10">
-        {/* publisher profile photo */}
-        <div className="flex flex-wrap col-span-2 items-center">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src={discuss.profileURL}
-              />
+      <Link to={`/discussion/${discuss._id}`}>
+        <div className="grid grid-cols-3 gap-4 items-center mt-10">
+          {/* publisher profile photo */}
+          <div className="flex flex-wrap col-span-2 items-center">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src={discuss.profileURL}
+                />
+              </div>
+            </div>
+            <div className="ml-4">
+              <h1 className="text-xl font-semibold">{discuss.userName}</h1>
+            </div>
+
+            {/* post summary */}
+            <div className="ml-4">
+              <h1 className="text-2xl">{discuss.title}</h1>
+
+              <h2>{postTime}</h2>
+            </div>
+            <div className="m-4">
+              <div className="badge badge-secondary badge-outline">
+                {discuss.tag}
+              </div>
+              <div className="badge badge-accent badge-outline ml-4">
+                {discuss.subTag}
+              </div>
             </div>
           </div>
-
-          {/* post summary */}
-          <div className="ml-4">
-            <h1 className="text-2xl">{discuss.title}</h1>
-
-            <h2>{postTime}</h2>
+          <div className="grid grid-cols-4 gap-1">
+            <FaRegThumbsUp />
+            <FaRegThumbsDown />
+            <FaCommentAlt />
+            <FaShareAlt />
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-1">
-          <FaRegThumbsUp />
-          <FaRegThumbsDown />
-          <FaCommentAlt />
-          <FaShareAlt />
-        </div>
-        <div className="ml-6">
-          <div className="badge badge-secondary badge-outline">
-            {discuss.tag}
-          </div>
-          <div className="badge badge-accent badge-outline ml-4">
-            {discuss.subTag}
-          </div>
-        </div>
-      </div>
+      </Link>
       <div className="divider divider-info"></div>
     </div>
   );

@@ -12,7 +12,8 @@ function App() {
     <>
       <div>
         <Header></Header>
-          <Outlet></Outlet>
+        <div className="h-44"></div>
+        <Outlet></Outlet>
         <Footer></Footer>
       </div>
     </>
