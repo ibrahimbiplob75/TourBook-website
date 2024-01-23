@@ -1,7 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import UseAxiosSecure from "../../../AxiosSecure/UseAxiosSecure"
-import UseCart from "../../../UseCart/UseCart";
 import { AuthProvider } from "../../../ContextProvider/ContextProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -12,11 +11,10 @@ const CheckOutForm = () => {
     const elements=useElements();
     const [axiosSecure]=UseAxiosSecure();
     const {user}=useContext(AuthProvider);
-    const [cart, refetch] = UseCart();
     const [clientSecret, setSecret] = useState("");
     const [TransactionId,setTransactionId]=useState("")
     const navigate=useNavigate();
-    const price=cart.reduce((total,item)=>total+item.price,0);
+    const price=500;
 
     useEffect(()=>{
       if(price>0){
@@ -76,27 +74,23 @@ const CheckOutForm = () => {
             transactionId: paymentIntent.id,
             price,
             date: new Date(),
-            quantity: cart.length,
-            cartItems: cart.map((item) => item._id),
-            menuItems: cart.map((item) => item.menuId),
-            status: "service pending",
-            itemNames: cart.map((item) => item.name),
+            status: "Membership pending",
           };
 
 
 
           const res = await axiosSecure.post("/payments", payment)
           .then((res) => {
-            refetch();
-            if (res?.data?.paymentResult?.insertedId) {
+            console.log(res)
+            if (res?.data?.insertedId) {
               Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "payment successfull, check Order History",
+                title: "payment successfull, check your Membership",
                 showConfirmButton: false,
                 timer: 2500,
               });
-              navigate("/dashboard/OrderHistory");
+              navigate("/dashboard/profile");
             }
             
           });

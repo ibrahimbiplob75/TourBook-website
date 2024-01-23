@@ -29,7 +29,8 @@ const router = createBrowserRouter([
       {
         path: "/discussion/:id",
         element: <DiscussionDetails></DiscussionDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/discussion/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/discussion/${params.id}`),
       },
 
       {
@@ -39,6 +40,16 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+
+      {
+        path: "/membership",
+        element: <Membership></Membership>,
+      },
+      {
+        path: "/membership/:email",
+        element: <Membership></Membership>,
+        
       },
     ],
   },
@@ -56,9 +67,8 @@ const router = createBrowserRouter([
         element: <DashHome></DashHome>,
       },
       {
-        path:"/dashboard/profile",
-        element:<Profile></Profile>
-
+        path: "/dashboard/profile",
+        element: <Profile></Profile>,
       },
 
       {
@@ -99,6 +109,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import DiscussionForm from './Components/Home/DiscussionForm.jsx';
 import DiscussionDetails from './Components/Home/DiscussionDetails.jsx';
 import Profile from './Components/Dashboard/Profile/Profile.jsx';
+import Membership from './Components/Membership.jsx';
 
 
 const queryClient = new QueryClient();

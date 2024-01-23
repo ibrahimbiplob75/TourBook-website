@@ -34,12 +34,12 @@ const Header = () => {
     };
     const menu = (
       <>
-        <Link to="/" >
+        <Link to="/">
           <li className="text-2xl m-2">Home</li>
         </Link>
-        <Link to="/menu">
-          <li className="text-2xl m-2">Member Ship</li>
-        </Link>      
+        <Link to="/membership">
+          <li className="text-2xl m-2">Membership</li>
+        </Link>
         <Link to="/">
           <li className="text-2xl m-2">Contact Us</li>
         </Link>
@@ -138,10 +138,10 @@ const Header = () => {
               </div>
               <ul className="menu menu-sm bg-opacity-80 bg-black dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
                 <li>
-                  <a className="justify-between">
+                  <Link to="/dashboard/profile" className="justify-between">
                     Profile
                     <span className="badge">New</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link to="/dashboard/home">Dashboard</Link>

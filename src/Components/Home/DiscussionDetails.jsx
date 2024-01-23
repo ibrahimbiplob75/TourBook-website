@@ -49,8 +49,8 @@ const DiscussionDetails = () => {
     const {user}=useContext(AuthProvider);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-    const allcomments=discuss.comments[0].commentData.comment;
-    console.log(allcomments)
+    // const allcomments=discuss.comments[0].commentData.comment;
+    // console.log(allcomments)
 
 
     const textareaRef = useRef(null);
