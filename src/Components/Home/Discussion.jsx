@@ -42,9 +42,6 @@ const Discussion = () => {
                 <li>
                   <a>Top Liked</a>
                 </li>
-                <li>
-                  <a>Tags</a>
-                </li>
               </ul>
             </div>
             <div className="mt-1">

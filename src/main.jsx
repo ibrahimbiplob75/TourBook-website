@@ -49,7 +49,6 @@ const router = createBrowserRouter([
       {
         path: "/membership/:email",
         element: <Membership></Membership>,
-        
       },
     ],
   },
@@ -71,9 +70,14 @@ const router = createBrowserRouter([
         element: <Profile></Profile>,
       },
       {
-        path:"/dashboard/mypost",
-        element:<Mypost></Mypost>
-
+        path: "/dashboard/mypost",
+        element: <Mypost></Mypost>,
+      },
+      {
+        path: "/dashboard/discussion/edit/:id",
+        element: <EditPost></EditPost>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/discussion/${params.id}`),
       },
 
       {
@@ -116,6 +120,7 @@ import DiscussionDetails from './Components/Home/DiscussionDetails.jsx';
 import Profile from './Components/Dashboard/Profile/Profile.jsx';
 import Membership from './Components/Membership.jsx';
 import Mypost from './Components/MyPost/Mypost.jsx';
+import EditPost from './PostData/EditPost.jsx';
 
 
 const queryClient = new QueryClient();

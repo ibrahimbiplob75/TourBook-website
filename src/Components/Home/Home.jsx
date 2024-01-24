@@ -11,7 +11,7 @@ import Featured from "./Featured";
 
 const Home = () => {
     return (
-      <div>
+      <div className="-my-44 mb-4">
         <div
           className="hero h-96"
           style={{
@@ -19,20 +19,6 @@ const Home = () => {
           }}
         >
           <div className="hero-overlay bg-opacity-60"></div>
-          {/* <div className="hero-content  text-black  w-1/2 h-1/2 text-center">
-            <div className="relative w-1/2 ml-40 mt-24">
-              <input
-                type="text"
-                placeholder="Search here...."
-                className="input input-bordered input-info w-full pr-16 text-black"
-                // value={searchTerm}
-                // onChange={handleSearch}
-              />
-              <button className="btn btn-info text-white text-xl absolute top-0 right-0 rounded-l-none">
-                Search
-              </button>
-            </div>
-          </div> */}
           <div className="join">
             <div>
               <div>
@@ -46,9 +32,9 @@ const Home = () => {
               <option disabled defaultValue={"Filter"}>
                 Filter
               </option>
-              <option>Sci-fi</option>
-              <option>Drama</option>
-              <option>Action</option>
+              <option>Tour</option>
+              <option>Hotel</option>
+              <option>Discussion</option>
             </select>
             <div className="indicator">
               {/* <span className="indicator-item badge badge-secondary">new</span> */}
