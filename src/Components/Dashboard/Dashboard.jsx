@@ -25,7 +25,7 @@ const Dashboard = () => {
               </li>
 
               <li className="mt-4 text-white bg-green-800 rounded-xl">
-                <NavLink to="/dashboard/cart">
+                <NavLink to="/dashboard/mypost">
                   <FaWpforms></FaWpforms>My Post
                 </NavLink>
               </li>

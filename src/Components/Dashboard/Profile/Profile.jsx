@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthProvider } from "../../../ContextProvider/ContextProvider";
-import badge from "../../../assets/silver-badge.png"
+import Bronzebadge from "../../../assets/silver-badge.png"
+import Goldbadge from "../../../assets/gold-badge.png"
+import UseCart from '../../../UseCart/UseCart';
 const Profile = () => {
   const { user } = useContext(AuthProvider);
+  const [cart]=UseCart();
     return (
       <div>
         <div className="card card-side bg-base-100 shadow-xl flex flex-col md:flex-row">
@@ -14,11 +17,13 @@ const Profile = () => {
             <div className="divider divider-info"></div>
             <p>email : {user.email}</p>
             <div className="divider divider-info"></div>
-            <p className='flex items-center'>
+            <p className="flex items-center">
               Membership :
-              
-              <img className="w-16 h-20 ml-3" src={badge} alt="Movie" />
-              
+              {cart?.email === user?.email && cart?.transactionId !== null ? 
+              <img className="w-16 h-20 ml-3" src={Goldbadge} alt="Badge" />
+              :
+              <img className="w-16 h-20 ml-3" src={Bronzebadge} alt="Badge" />
+              }
             </p>
             <div className="divider divider-info"></div>
             <div className="card-actions justify-end">

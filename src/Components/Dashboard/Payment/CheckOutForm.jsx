@@ -74,7 +74,7 @@ const CheckOutForm = () => {
             transactionId: paymentIntent.id,
             price,
             date: new Date(),
-            status: "Membership pending",
+            status: "Paid Membership ",
           };
 
 

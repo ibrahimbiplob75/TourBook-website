@@ -70,6 +70,11 @@ const router = createBrowserRouter([
         path: "/dashboard/profile",
         element: <Profile></Profile>,
       },
+      {
+        path:"/dashboard/mypost",
+        element:<Mypost></Mypost>
+
+      },
 
       {
         path: "/dashboard/payment",
@@ -110,6 +115,7 @@ import DiscussionForm from './Components/Home/DiscussionForm.jsx';
 import DiscussionDetails from './Components/Home/DiscussionDetails.jsx';
 import Profile from './Components/Dashboard/Profile/Profile.jsx';
 import Membership from './Components/Membership.jsx';
+import Mypost from './Components/MyPost/Mypost.jsx';
 
 
 const queryClient = new QueryClient();

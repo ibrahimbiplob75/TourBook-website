@@ -5,12 +5,14 @@ import Swal from "sweetalert2";
 import UseAxiosSecure from "../../../AxiosSecure/UseAxiosSecure";
 import { useContext } from "react";
 import { AuthProvider } from "../../../ContextProvider/ContextProvider";
+import UseCart from "../../../UseCart/UseCart";
 
 
 
 const AllUsers = () => {
   const [AxiosSecure] = UseAxiosSecure();
   const {DeleteUser}=useContext(AuthProvider)
+  const [cart]=UseCart()
 
   const { refetch, data: users = [] } = useQuery({
     queryKey: ["users"],
@@ -108,7 +110,14 @@ const AllUsers = () => {
                     </button>
                   )}
                 </td>
-                <td>Members</td>
+                <td>
+                  {cart?.email === user?.email &&
+                  cart?.transactionId !== null ? (
+                    <h1>Paid Membership</h1>
+                  ) : (
+                    <h1>Unpaid Member</h1>
+                  )}
+                </td>
                 <td>
                   <button
                     onClick={() => handleDelete(user._id)}

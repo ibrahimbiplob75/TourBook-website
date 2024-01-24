@@ -148,6 +148,7 @@ const DiscussionForm = () => {
             title: data.name,
             userName:user?.displayName,
             profileURL:user?.photoURL,
+            email:user?.email,
             tag: data.tag,
             subTag:data.subTag,
             descriptions:data.descriptions,
