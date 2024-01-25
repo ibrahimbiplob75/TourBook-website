@@ -54,6 +54,12 @@ const router = createBrowserRouter([
         path: "/bookmark",
         element: <BookMark></BookMark>,
       },
+      {
+        path: "/announcement/:id",
+        element: <AnnounceDetails></AnnounceDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/announcement/${params.id}`),
+      },
     ],
   },
   {
@@ -136,6 +142,7 @@ import EditPost from './PostData/EditPost.jsx';
 import Tags from './Components/Dashboard/Admin/Tags.jsx';
 import BookMark from './Components/BookMark/BookMark.jsx';
 import ManagePost from './Components/Dashboard/ManagePost.jsx';
+import AnnounceDetails from './Components/Shared/AnnounceDetails.jsx';
 
 
 const queryClient = new QueryClient();

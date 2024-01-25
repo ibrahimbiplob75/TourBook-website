@@ -20,7 +20,7 @@ const PopularTag = () => {
           <h2 className="text-3xl font-bold text-center">Popular Tag</h2>
           <div className="grid grid-cols-1 gap-3 ml-20 mt-10">
             {tags.map((tag) => (
-              <div className="badge badge-info badge-outline">
+              <div key={tag._id} className="badge badge-info badge-outline">
                 {tag.tags}
               </div>
             ))}

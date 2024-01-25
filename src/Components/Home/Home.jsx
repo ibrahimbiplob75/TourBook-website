@@ -51,7 +51,7 @@ const Home = () => {
           <Featured></Featured>
         </div>
 
-        <div>
+        <div className="">
           <SectionTitle
             subTitle={"Hey! Do you want to Ask?"}
             title={"Popular Discussion"}

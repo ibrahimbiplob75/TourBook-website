@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import SectionTitle from "../../Shared/SectionTitle";
 import AxiosPublic from "../../../AxiosPublic/AxiosPublic";
 import UseAxiosSecure from "../../../AxiosSecure/UseAxiosSecure";
+import { useContext } from "react";
+import { AuthProvider } from "../../../ContextProvider/ContextProvider";
 
 
 const imgApi=import.meta.env.VITE_IMGBB_API_KEY;
@@ -13,6 +15,7 @@ const AddItem = () => {
   const { register, handleSubmit, reset } = useForm();
   const [axiosPublic]=AxiosPublic()
   const [axiosSecure] = UseAxiosSecure();
+  const {user}=useContext(AuthProvider)
   
   const onSubmit = async(data) => {
     const imgFile = { image: data.image[0] };
@@ -21,28 +24,29 @@ const AddItem = () => {
         "content-type": "multipart/form-data",
       },
     });
+    console.log(user)
     if(res.data.success){
-      const menuItem={
-        name:data.name,
-        category:data.category,
-        price:parseFloat(data.price),
-        recipe:data.recipe,
+      const announce={
+        title:data.title,
+        admin:user?.displayName,
+        date:new Date(),
+        details:data.details,
         image:res.data.data.display_url,
       }
-      const result=await axiosSecure.post("/menu",menuItem).then(
-        (res)=>{
-          if(res.data.insertedId){
+      const result = await axiosSecure
+        .post("/anouncement", announce)
+        .then((res) => {
+          if (res.data.insertedId) {
             reset();
             Swal.fire({
               position: "center",
               icon: "success",
-              title: `${data.name} added to product`,
+              title: `Announcement Added by ${user?.displayName}`,
               showConfirmButton: false,
               timer: 1500,
             });
           }
-        }
-      );
+        });
 
 
     }
@@ -51,63 +55,36 @@ const AddItem = () => {
 
   return (
     <div className="w-full px-10">
-      <SectionTitle subTitle="What's new" title="Add an item"></SectionTitle>
+      <SectionTitle
+        subTitle="Make Anouncement"
+        title="Add as A Notice"
+      ></SectionTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control w-full mb-4">
           <label className="label">
-            <span className="label-text font-semibold">Recipe Name*</span>
+            <span className="label-text font-semibold"> Title*</span>
           </label>
           <input
             type="text"
-            placeholder="Recipe Name"
-            {...register("name", { required: true, maxLength: 120 })}
+            placeholder="Title"
+            {...register("title", { required: true, maxLength: 120 })}
             className="input input-bordered w-full "
           />
         </div>
-        <div className="flex my-4">
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text">Category*</span>
-            </label>
-            <select
-              defaultValue="Pick One"
-              {...register("category", { required: true })}
-              className="select select-bordered"
-            >
-              <option disabled>Pick One</option>
-              <option>pizza</option>
-              <option>soup</option>
-              <option>salad</option>
-              <option>dessert</option>
-              <option>desi</option>
-              <option>drinks</option>
-            </select>
-          </div>
-          <div className="form-control w-full ml-4">
-            <label className="label">
-              <span className="label-text font-semibold">Price*</span>
-            </label>
-            <input
-              type="number"
-              {...register("price", { required: true })}
-              placeholder="Type here"
-              className="input input-bordered w-full "
-            />
-          </div>
-        </div>
+
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Recipe Details</span>
+            <span className="label-text">Announce Details</span>
           </label>
           <textarea
-            {...register("recipe", { required: true })}
+            {...register("details", { required: true })}
             className="textarea textarea-bordered h-24"
-            placeholder="Bio"
+            placeholder="Descriptions"
           ></textarea>
         </div>
         <div className="form-control w-full my-4">
           <label className="label">
-            <span className="label-text">Item Image*</span>
+            <span className="label-text">Announce Image*</span>
           </label>
           <input
             type="file"
@@ -115,7 +92,13 @@ const AddItem = () => {
             className="file-input file-input-bordered w-full "
           />
         </div>
-        <input className="btn btn-sm mt-4" type="submit" value="Add Item" />
+        <div>
+          <input
+            className="btn btn-info mt-4 text-white"
+            type="submit"
+            value="Annaunce"
+          />
+        </div>
       </form>
     </div>
   );
