@@ -6,11 +6,10 @@ import {
   FaRegThumbsUp,
   FaShareAlt,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import AxiosPublic from '../../AxiosPublic/AxiosPublic';
 import { AuthProvider } from '../../ContextProvider/ContextProvider';
-import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
+import { useQuery } from '@tanstack/react-query';
 
 const formateDate = (date) => {
   const currentDate = new Date();
@@ -47,10 +46,8 @@ const DiscussionDetails = () => {
     const { handleSubmit, reset } = useForm();
     const postTime = formateDate(date);
     const {user}=useContext(AuthProvider);
-    const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-    // const allcomments=discuss.comments[0].commentData.comment;
-    // console.log(allcomments)
+ 
 
 
     const textareaRef = useRef(null);
@@ -59,17 +56,18 @@ const DiscussionDetails = () => {
       textareaRef.current.focus();
     };
 
-    console.log("details user", user?.email);
-
-    const TotalLiked=discuss.likes;
+   
+    console.log(discuss);
+    const TotalLiked=discuss?.likes || 0;
     const likestate = discuss.userID === user?.email ;
     const [liked, setLiked] = useState(!likestate);
-    const [likeCount, setLikeCount] = useState(TotalLiked);
+    const [likeCount, setLikeCount] = useState(1);
 
 
     const handleLikeClick = async () => {
      
       const updatedLikeCount = liked ? likeCount - 1 : likeCount + 1;
+      
       const result = await publicAxios
         .patch(`/discussion/${discuss._id}/like`, 
         {liked:updatedLikeCount,userID:user?.email})
@@ -88,27 +86,40 @@ const DiscussionDetails = () => {
     
 
     const handleCommentSubmit = async () => {
-
-      try {
         const response = await publicAxios.post(
           `/discussion/${discuss._id}/comments`,
           {
+            discuss_id:discuss._id,
             comment: newComment,
             userPhoto: user.photoURL,
             userName: user?.displayName,
           }
+          
         );
 
-        if (response.data.success) {
-          setComments([...comments, newComment]);
-          setNewComment("");
+        if (response.data.insertedId) {
+          refetch();
+          console.log(response.data);
+          // setComments();
+           setNewComment("");
         }
-      } catch (error) {
-        console.error("Error submitting comment:", error);
-      }
+      
     };
-    
 
+    
+    
+    const { data: comments = [], refetch } = useQuery({
+      queryKey: ["comments", discuss._id],
+      queryFn: async () => {
+        const res = await publicAxios.get(
+          `/discussion/${discuss._id}/comments`
+        );
+        console.log("res",res.data);
+        return res.data[0];
+      },
+    });
+    
+    
     return (
       <div>
         <div className="m-10 ">
@@ -191,7 +202,13 @@ const DiscussionDetails = () => {
           </div>
           <div className=" divider divider-info lg:w-1/2"></div>
           {/* this section is for show comment */}
-          
+          <div>
+            <h1>{comments.length}</h1>
+            {comments.map((comment) => (
+              <h1>{comment.comment}</h1>
+            ))}
+          </div>
+
           {/* this section is for write comment */}
           <div>
             <div className="flex flex-row lg:w-1/2 justify-between items-center mb-10 ">

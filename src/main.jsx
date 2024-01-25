@@ -24,11 +24,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/discussion/form",
-        element: <DiscussionForm></DiscussionForm>,
+        element: (
+          <PrivateRoute>
+            <DiscussionForm></DiscussionForm>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/discussion/:id",
-        element: <DiscussionDetails></DiscussionDetails>,
+        element: (
+          <PrivateRoute>
+            <DiscussionDetails></DiscussionDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/discussion/${params.id}`),
       },
@@ -44,7 +52,11 @@ const router = createBrowserRouter([
 
       {
         path: "/membership",
-        element: <Membership></Membership>,
+        element: (
+          <PrivateRoute>
+            <Membership></Membership>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/membership/:email",

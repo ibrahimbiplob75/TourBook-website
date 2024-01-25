@@ -17,16 +17,10 @@ const Announcement = () => {
       <div>
         <h2 className="text-3xl font-bold text-center">Anouncement</h2>
         {annaunces.map((annaunce) => (
-          <div key={annaunce._id} className="overflow-x-auto m-4">
-            <table className="table">
-              <tbody>
-                <tr className="bg-base-200">
-                  <Link to={`/announcement/${annaunce._id}`}>
-                    <td>{annaunce.title}</td>
-                  </Link>
-                </tr>
-              </tbody>
-            </table>
+          <div key={annaunce._id} className="overflow-x-auto m-4 shadow-xl h-12">
+            <Link to={`/announcement/${annaunce._id}`}>
+              <h1 className='m-4'>{annaunce.title}</h1>
+            </Link>
           </div>
         ))}
       </div>

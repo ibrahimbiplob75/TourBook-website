@@ -3,12 +3,19 @@ import logo from "../../assets/Tourism_logo.png";
 import { useContext, useEffect } from "react";
 import { AuthProvider } from "../../ContextProvider/ContextProvider";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 
 
 const Header = () => {
   const {user,LogOut}=useContext(AuthProvider);
-
+  const { data: annaunces = [] } = useQuery({
+    queryKey: ["annaunces"],
+    queryFn: async () => {
+      const res = await publicAxios.get("/anouncement");
+      return res.data;
+    },
+  });
 
     const logOut = () => {
       LogOut()
@@ -109,7 +116,10 @@ const Header = () => {
                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                   />
                 </svg>
-                <span className="badge badge-xs badge-primary indicator-item"></span>
+                {annaunces.length>0?  
+                <span className="badge badge-xs badge-primary indicator-item">
+                </span> 
+                :" "}
               </div>
             </button>
           ) : (

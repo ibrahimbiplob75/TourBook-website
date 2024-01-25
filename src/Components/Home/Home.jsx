@@ -56,7 +56,7 @@ const Home = () => {
             subTitle={"Hey! Do you want to Ask?"}
             title={"Popular Discussion"}
           ></SectionTitle>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="felx col-span-1">
               <Announcement></Announcement>
             </div>
