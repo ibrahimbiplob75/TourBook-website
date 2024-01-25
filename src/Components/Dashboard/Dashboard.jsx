@@ -37,7 +37,7 @@ const Dashboard = () => {
               </li>
 
               <li className="mt-4 text-white bg-green-800 rounded-xl">
-                <NavLink to="/dashboard/reservation">
+                <NavLink to="/bookmark">
                   <FaBookmark></FaBookmark>Bookmark
                 </NavLink>
               </li>
@@ -56,8 +56,8 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li className="mt-4 text-white bg-green-800 rounded-xl">
-                  <NavLink to="/">
-                    <FaBook></FaBook> Manage Bookings
+                  <NavLink to="/dashboard/tags">
+                    <FaBook></FaBook> Manage Tags
                   </NavLink>
                 </li>
                 <li className="mt-4 text-white bg-green-800 rounded-xl">

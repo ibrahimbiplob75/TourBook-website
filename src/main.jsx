@@ -50,6 +50,10 @@ const router = createBrowserRouter([
         path: "/membership/:email",
         element: <Membership></Membership>,
       },
+      {
+        path:"/bookmark",
+        element:<BookMark></BookMark>
+      }
     ],
   },
   {
@@ -78,6 +82,10 @@ const router = createBrowserRouter([
         element: <EditPost></EditPost>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/discussion/${params.id}`),
+      },
+      {
+        path:"/dashboard/tags",
+        element:<Tags></Tags>
       },
 
       {
@@ -121,6 +129,8 @@ import Profile from './Components/Dashboard/Profile/Profile.jsx';
 import Membership from './Components/Membership.jsx';
 import Mypost from './Components/MyPost/Mypost.jsx';
 import EditPost from './PostData/EditPost.jsx';
+import Tags from './Components/Dashboard/Admin/Tags.jsx';
+import BookMark from './Components/BookMark/BookMark.jsx';
 
 
 const queryClient = new QueryClient();
