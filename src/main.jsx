@@ -51,9 +51,9 @@ const router = createBrowserRouter([
         element: <Membership></Membership>,
       },
       {
-        path:"/bookmark",
-        element:<BookMark></BookMark>
-      }
+        path: "/bookmark",
+        element: <BookMark></BookMark>,
+      },
     ],
   },
   {
@@ -84,13 +84,17 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/discussion/${params.id}`),
       },
       {
-        path:"/dashboard/tags",
-        element:<Tags></Tags>
+        path: "/dashboard/tags",
+        element: <Tags></Tags>,
       },
 
       {
         path: "/dashboard/payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "/dashboard/manageitems",
+        element: <ManagePost></ManagePost>,
       },
 
       //Admin route
@@ -131,6 +135,7 @@ import Mypost from './Components/MyPost/Mypost.jsx';
 import EditPost from './PostData/EditPost.jsx';
 import Tags from './Components/Dashboard/Admin/Tags.jsx';
 import BookMark from './Components/BookMark/BookMark.jsx';
+import ManagePost from './Components/Dashboard/ManagePost.jsx';
 
 
 const queryClient = new QueryClient();
